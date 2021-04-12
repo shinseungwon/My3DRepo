@@ -1,4 +1,5 @@
 ﻿#include "stdafx.h"
+#include "Space.h"
 
 #pragma comment(lib,"winmm.lib")
 #pragma warning(disable:4996)
@@ -10,6 +11,7 @@ const TCHAR windowClass[] = _T("MyGameWindow");
 const TCHAR title[] = _T("MyGame");
 
 HWND hWnd;
+Space* space;
 
 int wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nCmdShow);
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -53,6 +55,9 @@ int wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LP
 
 	ShowWindow(hWnd, 1);
 	UpdateWindow(hWnd);
+
+	space = new Space(hWnd, WIDTH, HEIGHT);	
+	SpaceStart(space, WIDTH, HEIGHT);
 
 	MSG msg;
 	while (GetMessage(&msg, NULL, 0, 0))

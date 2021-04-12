@@ -141,10 +141,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="3DEngine.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Space.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Tools.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="Space.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Tools.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
