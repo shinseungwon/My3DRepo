@@ -5,7 +5,7 @@ class pt {
 public:
 	int x;
 	int y;
-	int z;
+	int z;	
 	pt(int x, int y, int z);
 };
 

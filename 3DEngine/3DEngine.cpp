@@ -4,8 +4,8 @@
 #pragma comment(lib,"winmm.lib")
 #pragma warning(disable:4996)
 
-#define WIDTH 1024
-#define HEIGHT 768
+#define WIDTH 1200
+#define HEIGHT 800
 
 const TCHAR windowClass[] = _T("MyGameWindow");
 const TCHAR title[] = _T("MyGame");
