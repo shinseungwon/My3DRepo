@@ -3,9 +3,9 @@ using namespace std;
 
 class pt {
 public:
-	int x;
-	int y;
-	int z;	
+	float x;
+	float y;
+	float z;	
 	pt(int x, int y, int z);
 };
 
@@ -14,4 +14,15 @@ public:
 	int start;
 	int end;
 	ed(int start, int end);
+};
+
+class pl {
+public:
+	float nVecX = 0;
+	float nVecY = 0;
+	float nVecZ = 0;
+
+	vector<int>* eds;
+	vector<int>* pts;
+	pl();	
 };

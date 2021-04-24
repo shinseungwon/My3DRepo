@@ -16,6 +16,8 @@ public:
 
 	float rotationMatrix[4][4];
 
+	COLORREF* colors;
+
 	Space(HWND hWnd, WORD bWidth, WORD bHeight);
 	void Clear();
 	void Next();
@@ -27,4 +29,3 @@ public:
 
 void SpaceStart(Space* space, int w, int h);
 void SpaceDraw(Space* space, promise<string>* p);
-

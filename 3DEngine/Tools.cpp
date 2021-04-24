@@ -11,3 +11,8 @@ ed::ed(int start, int end) {
 	this->start = start;
 	this->end = end;
 }
+
+pl::pl() {
+	eds = new vector<int>();
+	pts = new vector<int>();
+}

@@ -53,6 +53,9 @@ int wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LP
 		return 1;
 	}
 
+	//open in sub monitor
+	SetWindowPos(hWnd, NULL, -WIDTH, 0, WIDTH, HEIGHT, 0);
+
 	ShowWindow(hWnd, 1);
 	UpdateWindow(hWnd);
 

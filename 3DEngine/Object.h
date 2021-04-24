@@ -4,11 +4,15 @@ using namespace std;
 
 class Object {
 public:
-	//vector<tuple<int, int, int>>* points; //x, y
-	//vector<pair<int, int>>* edges; //point seq1 to seq2
+	float cx = 0;
+	float cy = 0;
+	float cz = 0;
 
 	vector<pt*>* points;
 	vector<ed*>* edges;
+	vector<pl*>* planes;
 
 	Object();
+	void Center();
+	void NVec(pl* plane);
 };
