@@ -4,15 +4,15 @@ using namespace std;
 
 class Object {
 public:
-	float cx = 0;
-	float cy = 0;
-	float cz = 0;
 
 	vector<pt*>* points;
 	vector<ed*>* edges;
 	vector<pl*>* planes;
 
-	Object();
-	void Center();
+	Object();	
+	void Center(float* res); //save center xyz
 	void NVec(pl* plane);
+	void Move(float dx, float dy, float dz);
+	void Rotate(float** pivotMatrix);
+	void Pivot(float** pivotMatrix);
 };

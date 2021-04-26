@@ -144,12 +144,14 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Space.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="TestTemplate.cpp" />
     <ClCompile Include="Tools.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object.h" />
     <ClInclude Include="Space.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TestTemplate.h" />
     <ClInclude Include="Tools.h" />
   </ItemGroup>
   <ItemGroup>

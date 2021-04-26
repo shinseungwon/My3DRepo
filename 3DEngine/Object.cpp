@@ -7,37 +7,39 @@ Object::Object() {
 	planes = new vector<pl*>();
 }
 
-void Object::Center() {
-	cx = 0;
-	cy = 0;
-	cz = 0;
+void Object::Center(float* res) {
+	float cx = 0;
+	float cy = 0;
+	float cz = 0;
 	for (int i = 0; i < points->size(); i++) {
 		cx += points->at(i)->x;
 		cy += points->at(i)->y;
 		cz += points->at(i)->z;
 	}
-	cx /= points->size();
-	cy /= points->size();
-	cz /= points->size();
+	res[0] = cx / points->size();
+	res[1] = cy / points->size();
+	res[2] = cz / points->size();
 }
-
 
 void Object::NVec(pl* plane) {
 	pt* p1 = points->at(plane->pts->at(0) - 1);
 	pt* p2 = points->at(plane->pts->at(1) - 1);
-	pt* p3 = points->at(plane->pts->at(2) - 1);	
+	pt* p3 = points->at(plane->pts->at(2) - 1);
 
 	//object center : cx cy cz
 
 	//plane center
 	float pcx = (p1->x + p2->x + p3->x) / 3;
 	float pcy = (p1->y + p2->y + p3->y) / 3;
-	float pcz = (p1->z + p2->z + p3->z) / 3;	
+	float pcz = (p1->z + p2->z + p3->z) / 3;
 
 	//object center -> plane center vector
-	float octopcx = pcx - cx;
-	float octopcy = pcy - cy;
-	float octopcz = pcz - cz;
+	float* center = new float[3];
+	Center(center);
+	float octopcx = pcx - center[0];
+	float octopcy = pcy - center[1];
+	float octopcz = pcz - center[2];
+	delete[] center;
 
 	float p12x = p2->x - p1->x; //a1
 	float p12y = p2->y - p1->y; //a2
@@ -61,4 +63,33 @@ void Object::NVec(pl* plane) {
 	plane->nVecX = nvecx;
 	plane->nVecY = nvecy;
 	plane->nVecZ = nvecz;
+}
+
+void Object::Move(float dx, float dy, float dz) {
+	for (int i = 0; i < points->size(); i++) {
+		points->at(i)->move(dx, dy, dz);
+	}
+}
+
+void Object::Rotate(float** pivotMatrix) {
+	float* center = new float[3];
+	Center(center);	
+	Move(-center[0], -center[1], -center[2]);
+
+	Pivot(pivotMatrix);
+
+	float* apcenter = new float[3];
+	Center(apcenter);	
+	Move(center[0] - apcenter[0], center[1] - apcenter[1], center[2] - apcenter[1]);	
+
+	delete[] center;
+	delete[] apcenter;
+}
+
+void Object::Pivot(float** pivotMatrix) {
+	float* res = new float[3];
+	for (int i = 0; i < points->size(); i++) {
+		getRotate(pivotMatrix, points->at(i), res);
+		points->at(i)->moveTo(res[0], res[1], res[2]);
+	}
 }

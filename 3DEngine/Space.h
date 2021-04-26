@@ -13,18 +13,12 @@ public:
 	BYTE waiting = 10;	
 
 	vector<Object*>* objs;
-
-	float rotationMatrix[4][4];
-
-	COLORREF* colors;
+	float** rotationMatrix;
 
 	Space(HWND hWnd, WORD bWidth, WORD bHeight);
-	void Clear();
-	void Next();
+	void Clear();	
 	void Draw();
-
-	void setUpRotationMatrix(float angle, float u, float v, float w);
-	void rotate(pt* point);
+	virtual void Next();
 };
 
 void SpaceStart(Space* space, int w, int h);

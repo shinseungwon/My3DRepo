@@ -339,3 +339,128 @@ void Space::rotate(pt* point) {
 
 
 find(meetXs->begin(), meetXs->end(), x) == meetXs->end()
+
+void Space::rotate(pt* point) {
+	//float inputMatrix[4][1] = { point->x, point->y, point->z, 1.0 };
+	//float outputMatrix[4][1] = { 0.0, 0.0, 0.0, 0.0 };
+
+	//for (int i = 0; i < 4; i++) {
+	//	for (int j = 0; j < 1; j++) {
+	//		outputMatrix[i][j] = 0;
+	//		for (int k = 0; k < 4; k++) {
+	//			outputMatrix[i][j] += rotationMatrix[i][k] * inputMatrix[k][j];
+	//		}
+	//	}
+	//}
+
+	float** inputMatrix = new float* [4];
+	inputMatrix[0] = new float[1];
+	inputMatrix[0][0] = point->x;
+	inputMatrix[1] = new float[1];
+	inputMatrix[1][0] = point->y;
+	inputMatrix[2] = new float[1];
+	inputMatrix[2][0] = point->z;
+	inputMatrix[3] = new float[1];
+	inputMatrix[3][0] = 1;
+	float** outputMatrix = dot(rotationMatrix, 4, 4, inputMatrix, 1, 4);
+
+	point->x = ceil(outputMatrix[0][0]);
+	point->y = ceil(outputMatrix[1][0]);
+	point->z = ceil(outputMatrix[2][0]);
+}
+
+
+void Space::rotate(pt* point) {
+	float** inputMatrix = new float* [4];
+	inputMatrix[0] = new float[1];
+	inputMatrix[0][0] = point->x;
+	inputMatrix[1] = new float[1];
+	inputMatrix[1][0] = point->y;
+	inputMatrix[2] = new float[1];
+	inputMatrix[2][0] = point->z;
+	inputMatrix[3] = new float[1];
+	inputMatrix[3][0] = 1;
+	float** outputMatrix = dot(rotationMatrix, 4, 4, inputMatrix, 1, 4);
+
+	point->x = ceil(outputMatrix[0][0]);
+	point->y = ceil(outputMatrix[1][0]);
+	point->z = ceil(outputMatrix[2][0]);
+}
+
+point->x = ceil(outputMatrix[0][0]);
+	point->y = ceil(outputMatrix[1][0]);
+	point->z = ceil(outputMatrix[2][0]);
+
+
+
+
+
+
+
+
+
+				for (y = minY; y <= maxY; y++) {
+					meetXs->clear();
+					vector<int>* pts = tpl->pts;
+					vector<int>* eds = tpl->eds;
+					for (k = 0; k < eds->size(); k++) {
+						pt* ab = points->at(edges->at(eds->at(k) - 1)->start - 1);
+						pt* cd = points->at(edges->at(eds->at(k) - 1)->end - 1);
+
+						x1 = ab->x;
+						y1 = ab->y;
+						x2 = cd->x;
+						y2 = cd->y;
+
+						if (x1 > x2) {
+							xs = x2;
+							xb = x1;
+						}
+						else {
+							xs = x1;
+							xb = x2;
+						}
+
+						if (y2 != y1) {
+							x = ((y - y1) * (x2 - x1) / (y2 - y1)) + x1;
+							bool exist = false;
+							for (l = 0; l < meetXs->size(); l++) {
+								if (abs(meetXs->at(l) - x) <= 1) {
+									exist = true;
+								}
+							}
+
+							if (x <= xb && x >= xs && !exist) {
+								meetXs->push_back(x);
+							}
+						}
+					}
+
+					if (meetXs->size() == 2) {
+						sort(meetXs->begin(), meetXs->end());
+						for (k = 0; k < meetXs->size() - 1; k += 2) {
+							int x1 = meetXs->at(k);
+							int x2 = meetXs->at(k + 1);
+							for (x = x1 + 1; x <= x2 - 1; x++) {
+								if (y + hh < bHeight && x + hw < bWidth) {
+									t = (y + hh) * bWidth + (x + hw);
+									if (t >= 0 && t < size && (board[t] == 0x00000000 || board[t] == 0x00ffffff)) {
+										if (meetXs->size() == 3) {
+											board[t] = 0x0000ffff;
+										}
+										else board[t] = color;
+									}
+								}
+							}
+						}
+					}
+				}
+
+
+
+
+
+void Space::Next() {
+	//objs->at(0)->Pivot(rotationMatrix);
+	objs->at(0)->Rotate(rotationMatrix);
+}
