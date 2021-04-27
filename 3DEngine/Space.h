@@ -13,7 +13,7 @@ public:
 	BYTE waiting = 10;	
 
 	vector<Object*>* objs;
-	float** rotationMatrix;
+
 
 	Space(HWND hWnd, WORD bWidth, WORD bHeight);
 	void Clear();	
